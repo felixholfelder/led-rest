@@ -8,12 +8,12 @@ data class Mode(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "COLORMODEID")
-        private var id: Int = 0,
+        var id: Int = 0,
 
         @Column(name = "NAME")
-        private val name: String? = null,
+        val name: String? = null,
 
         @Column(name = "KZ")
-        private val kz: Int? = null
+        val kz: Int? = null
 ) {
 }
