@@ -1,3 +1,10 @@
+server:
+  port: 8020
+  ssl:
+    key-store: classpath:cert.p12
+    key-store-password: Wassertenn1s
+    keyStoreType: PKCS12
+
 spring:
   jpa:
     show-sql: false
@@ -10,13 +17,13 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
   datasource:
     driverClassName: org.postgresql.Driver
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:postgresql://ec2-52-211-108-161.eu-west-1.compute.amazonaws.com:5432/d69bv64rkdg314
+    username: jmglaspaadtnlo
+    password: a33ea7c9500feff4769c070a2a6b09e109c9a2c15273e1e3390e3cc7d61d65c4
   security:
     user:
-      name: ${USER_NAME}
-      password: ${USER_PASSWORD}
+      name: LED-REST
+      password: hidh98jlhxl
 
   main:
     allow-bean-definition-overriding: true
