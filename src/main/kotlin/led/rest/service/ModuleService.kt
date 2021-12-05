@@ -23,7 +23,6 @@ class ModuleService(private val moduleRepository: ModuleRepository) {
         try {
             log.info("Suche nach MAC $mac")
             module = moduleRepository.findByMac(mac)
-            module.status = EspStatusEnum.ACTIVE
             module.ip = ip
             moduleRepository.saveAndFlush(module)
             log.info("Status von ESP ${module.name} wurde aktualisiert!")
@@ -38,7 +37,7 @@ class ModuleService(private val moduleRepository: ModuleRepository) {
     }
 
     fun updateModule(moduleId: Int, module: Module): Module {
-        val newModule = Module(moduleId, module.name, module.type, module.icon, module.mac, module.status, module.syncDate)
+        val newModule = Module(moduleId, module.name, module.type, module.mac)
         return moduleRepository.saveAndFlush(newModule)
     }
 

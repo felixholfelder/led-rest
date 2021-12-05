@@ -13,21 +13,21 @@ class EspStatusScheduler(private val moduleRepository: ModuleRepository) {
     private val FIFTEEN: Long = 15
     private val log = LoggerFactory.getLogger(javaClass)
 
-    @Scheduled(fixedDelay = 15000)
-    private fun checkCurrentLedModules() {
-        log.info("Suche nach aktiven Modulen...")
-        val modules: List<Module> = moduleRepository.findAllByStatus(EspStatusEnum.ACTIVE)
-        val now: ZonedDateTime = ZonedDateTime.now()
-        val fifteenSecondsAgo: ZonedDateTime = now.minusSeconds(FIFTEEN)
-        modules.forEach {
-            log.info("Prüfe, ob der letzte Sync ist älter als $FIFTEEN Sekunden...")
-            if (it.syncDate?.toInstant()?.isBefore(fifteenSecondsAgo.toInstant()) == true) {
-                it.status = EspStatusEnum.INACTIVE
-                it.syncDate = ZonedDateTime.now()
-                moduleRepository.saveAndFlush(it)
-                log.info("Module ${it.name} ist jetzt inaktiv!")
-            }
-        }
-        log.info("Prüfung abgeschlossen!")
-    }
+//    @Scheduled(fixedDelay = 15000)
+//    private fun checkCurrentLedModules() {
+//        log.info("Suche nach aktiven Modulen...")
+//        val modules: List<Module> = moduleRepository.findAllByStatus(EspStatusEnum.ACTIVE)
+//        val now: ZonedDateTime = ZonedDateTime.now()
+//        val fifteenSecondsAgo: ZonedDateTime = now.minusSeconds(FIFTEEN)
+//        modules.forEach {
+//            log.info("Prüfe, ob der letzte Sync ist älter als $FIFTEEN Sekunden...")
+//            if (it.syncDate?.toInstant()?.isBefore(fifteenSecondsAgo.toInstant()) == true) {
+//                it.status = EspStatusEnum.INACTIVE
+//                it.syncDate = ZonedDateTime.now()
+//                moduleRepository.saveAndFlush(it)
+//                log.info("Module ${it.name} ist jetzt inaktiv!")
+//            }
+//        }
+//        log.info("Prüfung abgeschlossen!")
+//    }
 }

@@ -18,17 +18,8 @@ data class Module(
         @Column(name = "TYPE")
         val type: String? = null,
 
-        @Column(name = "ICON")
-        val icon: String? = null,
-
         @Column(name = "MAC")
         val mac: String? = null,
-
-        @Column(name = "STATUS")
-        var status: EspStatusEnum? = null,
-
-        @Column(name = "SYNCDATE")
-        var syncDate: ZonedDateTime? = null,
 
         @Column(name = "IP")
         var ip: String? = null
