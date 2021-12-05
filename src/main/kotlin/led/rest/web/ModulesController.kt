@@ -16,8 +16,8 @@ class ModulesController(private val moduleService: ModuleService) {
 
     @GetMapping("")
     @Operation(summary = "Gibt eine List mit Modulen zurück anhand des übergebenen Status zurück")
-    fun getAllModules(@RequestParam("status", required = false) statusEnum: EspStatusEnum?): List<Module> {
-        return moduleService.findAllModules(statusEnum)
+    fun getAllModules(): List<Module> {
+        return moduleService.findAllModules()
     }
 
     @PostMapping("")

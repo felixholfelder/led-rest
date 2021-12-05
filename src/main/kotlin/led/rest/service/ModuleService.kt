@@ -1,7 +1,6 @@
 package led.rest.service
 
 import led.rest.entity.Module
-import led.rest.enums.EspStatusEnum
 import led.rest.repository.ModuleRepository
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
@@ -11,11 +10,8 @@ import org.springframework.web.client.ResourceAccessException
 class ModuleService(private val moduleRepository: ModuleRepository) {
     private val log = LoggerFactory.getLogger(javaClass)
 
-    fun findAllModules(statusEnum: EspStatusEnum?): List<Module> {
-        if(statusEnum == null) {
-            return moduleRepository.findAll()
-        }
-        return moduleRepository.findAllByStatus(statusEnum)
+    fun findAllModules(): List<Module> {
+        return moduleRepository.findAll()
     }
 
     fun setStatus(ip: String, mac: String): String {

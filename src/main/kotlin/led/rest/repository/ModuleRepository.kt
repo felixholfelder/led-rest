@@ -7,7 +7,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface ModuleRepository: JpaRepository<Module, Int> {
-    fun findAllByStatus(status: EspStatusEnum): List<Module>
-
     fun findByMac(mac: String): Module
 }
