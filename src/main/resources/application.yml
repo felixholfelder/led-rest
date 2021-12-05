@@ -15,7 +15,7 @@ spring:
     driverClassName: org.postgresql.Driver
     url: ${DB_URL}
     username: ${DB_USERNAME}
-    password: ${a33ea7c9500feff4769c070a2a6b09e109c9a2c15273e1e3390e3cc7d61d65c4}
+    password: ${DB_PASSWORD}
   security:
     user:
       name: ${USER_NAME}

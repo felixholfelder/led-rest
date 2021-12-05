@@ -11,7 +11,10 @@ import org.springframework.web.client.ResourceAccessException
 class ModuleService(private val moduleRepository: ModuleRepository) {
     private val log = LoggerFactory.getLogger(javaClass)
 
-    fun findAllModulesByStatus(statusEnum: EspStatusEnum): List<Module> {
+    fun findAllModules(statusEnum: EspStatusEnum?): List<Module> {
+        if(statusEnum == null) {
+            return moduleRepository.findAll()
+        }
         return moduleRepository.findAllByStatus(statusEnum)
     }
 
