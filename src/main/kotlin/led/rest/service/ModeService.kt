@@ -1,13 +1,11 @@
 package led.rest.service
 
-import led.rest.entity.Mode
-import led.rest.repository.ModeRepository
+import led.rest.enums.ColorModeEnum
 import org.springframework.stereotype.Service
 
 @Service
-class ModeService(private val modeRepository: ModeRepository) {
-
-    fun findAllModes(): List<Mode?> {
-        return modeRepository.findAll()
+class ModeService {
+    fun findAllModes(): Array<ColorModeEnum> {
+        return ColorModeEnum.values()
     }
 }

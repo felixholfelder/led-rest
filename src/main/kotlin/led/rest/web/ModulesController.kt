@@ -3,7 +3,6 @@ package led.rest.web
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import led.rest.entity.Module
-import led.rest.enums.EspStatusEnum
 import led.rest.model.EspStatusModel
 import led.rest.service.ModuleService
 import org.springframework.web.bind.annotation.*

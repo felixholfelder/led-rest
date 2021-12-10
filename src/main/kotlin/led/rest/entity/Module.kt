@@ -1,7 +1,5 @@
 package led.rest.entity
 
-import led.rest.enums.EspStatusEnum
-import java.time.ZonedDateTime
 import javax.persistence.*
 
 @Entity(name = "Module")
