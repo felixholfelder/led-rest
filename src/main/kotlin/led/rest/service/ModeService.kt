@@ -5,7 +5,12 @@ import org.springframework.stereotype.Service
 
 @Service
 class ModeService {
-    fun findAllModes(): Array<ColorModeEnum> {
-        return ColorModeEnum.values()
+    var test = ColorModeEnum.values()
+    fun findAllModes(): MutableList<Int> {
+        val list: MutableList<Int> = ArrayList()
+        for (t in test) {
+            list.add(t.colorModeId)
+        }
+        return list
     }
 }
