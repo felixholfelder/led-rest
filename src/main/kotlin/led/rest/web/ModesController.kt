@@ -2,7 +2,6 @@ package led.rest.web
 
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
-import led.rest.enums.ColorModeEnum
 import led.rest.service.ModeService
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping

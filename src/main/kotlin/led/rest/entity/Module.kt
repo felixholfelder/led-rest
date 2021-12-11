@@ -19,7 +19,7 @@ data class Module(
         @Column(name = "MAC")
         val mac: String? = null,
 
-        @Column(name = "IP")
-        var ip: String? = null
+        @Column(name = "address")
+        var address: String? = null
 ) {
 }

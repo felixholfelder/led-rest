@@ -3,7 +3,6 @@ package led.rest.web
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import led.rest.entity.Module
-import led.rest.model.EspStatusModel
 import led.rest.service.ModuleService
 import org.springframework.web.bind.annotation.*
 
@@ -23,12 +22,6 @@ class ModulesController(private val moduleService: ModuleService) {
     @Operation(summary = "Erstellt ein neues Modul")
     fun createModule(@RequestBody module: Module): Module {
         return moduleService.createNewModule(module)
-    }
-
-    @PostMapping("/status")
-    @Operation(summary = "Aktualisiert den Status von einem Modul")
-    fun setEspStatus(@RequestBody statusModel: EspStatusModel): String {
-        return moduleService.setStatus(statusModel.ip, statusModel.mac)
     }
 
     @PutMapping("/{moduleId}")
