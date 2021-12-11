@@ -13,9 +13,6 @@ data class Module(
         @Column(name = "NAME")
         val name: String? = null,
 
-        @Column(name = "TYPE")
-        val type: String? = null,
-
         @Column(name = "MAC")
         val mac: String? = null,
 
