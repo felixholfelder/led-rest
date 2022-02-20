@@ -13,10 +13,9 @@ data class Module(
         @Column(name = "NAME")
         val name: String? = null,
 
-        @Column(name = "MAC")
-        val mac: String? = null,
+        @Column(name = "ADDRESS")
+        var address: String? = null,
 
-        @Column(name = "address")
-        var address: String? = null
-) {
-}
+        @Column(name = "SESSION_ID")
+        var sessionId: String? = null
+)

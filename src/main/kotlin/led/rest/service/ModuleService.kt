@@ -15,7 +15,7 @@ class ModuleService(private val moduleRepository: ModuleRepository) {
     }
 
     fun updateModule(moduleId: Int, module: Module): Module {
-        val newModule = Module(moduleId, module.name, module.mac, module.address)
+        val newModule = Module(moduleId, module.name, module.address)
         return moduleRepository.saveAndFlush(newModule)
     }
 

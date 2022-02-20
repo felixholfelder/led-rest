@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface ModuleRepository: JpaRepository<Module, Int> {
-    fun findByMac(mac: String): Module
+//    fun findByMac(mac: String): Module
 }
