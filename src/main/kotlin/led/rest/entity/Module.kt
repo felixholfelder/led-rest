@@ -1,5 +1,6 @@
 package led.rest.entity
 
+import led.rest.enums.EspStatusEnum
 import javax.persistence.*
 
 @Entity(name = "Module")
@@ -16,6 +17,6 @@ data class Module(
         @Column(name = "ADDRESS")
         var address: String? = null,
 
-        @Column(name = "SESSION_ID")
-        var sessionId: String? = null
+        @Column(name = "STATUS")
+        var status: EspStatusEnum? = null
 )

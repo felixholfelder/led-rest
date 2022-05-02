@@ -15,5 +15,4 @@ data class Mode(
 
         @Column(name = "KZ")
         val kz: Int? = null
-) {
-}
+)
