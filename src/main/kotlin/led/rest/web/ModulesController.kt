@@ -24,7 +24,7 @@ class ModulesController(private val moduleService: ModuleService) {
         return moduleService.createNewModule(module)
     }
 
-    @PutMapping("/{moduleId}")
+    @PatchMapping("/{moduleId}")
     @Operation(summary = "Updates a module")
     fun updateModule(@PathVariable("moduleId") moduleId: Int, @RequestBody module: Module): Module {
         return moduleService.updateModule(moduleId, module)
