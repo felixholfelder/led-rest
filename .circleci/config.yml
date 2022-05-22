@@ -57,6 +57,7 @@ workflows:
   version: 2
   build-pipeline:
     jobs:
+      - build
       - dockerize:
           requires:
             - build
