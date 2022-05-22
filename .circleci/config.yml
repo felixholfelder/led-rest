@@ -48,27 +48,6 @@ jobs:
           paths:
             - .
 
-  deploy:
-    machine: true # # recommended linux image - includes Ubuntu 20.04,
-    steps:
-      - attach_workspace:
-          at: ./
-      - add_ssh_keys:
-          fingerprints:
-            - "dd:b4:76:45:0c:8c:b0:8d:64:df:e7:42:16:17:2d:82"
-      - run:
-          name: Add to known hosts
-          command: ssh-keyscan -H $HOSTIP >> ~/.ssh/known_hosts
-      - run:
-          name: Setup
-          command: chmod 755 /home/circleci/project/deploy.sh
-      - run:
-          name: Deploy
-          command: |
-            cd /home/circleci/project
-            chmod 755 deploy.sh
-            ./deploy.sh
-
 workflows:
   version: 2
   build-pipeline:
@@ -80,12 +59,6 @@ workflows:
       - dockerize:
           requires:
             - build
-          filters:
-            branches:
-              only: master
-      - deploy:
-          requires:
-            - dockerize
           filters:
             branches:
               only: master
