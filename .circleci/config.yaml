@@ -34,11 +34,7 @@ jobs:
       - run:
           name: Build latest docker image
           command: |
-            docker build -t $IMAGE_NAME:latest .
-      - run:
-          name: Build versioned docker image
-          command: |
-            docker build -t $IMAGE_NAME-$CIRCLE_TAG:latest .
+            docker build -t $IMAGE_NAME:$CIRCLE_TAG .
       - run:
           name: Push to Docker-Hub
           command: |
@@ -56,14 +52,7 @@ workflows:
   version: 2
   build-pipeline:
     jobs:
-      - build:
-        filters:
-          tags:
-            only: /.*/
       - dockerize:
           requires:
-            - build
-          filters:
-            tags:
-              only: /.*/
+            - build:
 
