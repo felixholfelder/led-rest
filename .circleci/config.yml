@@ -45,7 +45,7 @@ jobs:
             echo "$DOCKERHUB_PASS" |
             docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
             docker push $IMAGE_NAME:latest
-            docker push $IMAGE_NAME:$CIRCLE_BUILD_NUM
+            docker push $IMAGE_NAME:v$CIRCLE_BUILD_NUM
       - store_artifacts:
           path: /home/circleci/project
       - persist_to_workspace:
