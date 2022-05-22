@@ -32,7 +32,7 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: Build latest docker image
+          name: Build docker image
           command: |
             docker build -t $IMAGE_NAME:$CIRCLE_TAG .
       - run:
@@ -40,7 +40,7 @@ jobs:
           command: |
             echo "$DOCKERHUB_PASS" |
             docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
-            docker push $IMAGE_NAME:latest
+            docker push $IMAGE_NAME:$CIRCLE_TAG
       - store_artifacts:
           path: /home/circleci/project
       - persist_to_workspace:
@@ -54,5 +54,5 @@ workflows:
     jobs:
       - dockerize:
           requires:
-            - build:
+            - build
 
