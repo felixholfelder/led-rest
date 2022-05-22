@@ -1,14 +1,13 @@
 package led.rest.service
 
 import led.rest.entity.Module
-import led.rest.enums.EspStatusEnum
 import led.rest.repository.ModuleRepository
 import org.springframework.stereotype.Service
 
 @Service
 class ModuleService(private val moduleRepository: ModuleRepository) {
-    fun findAllByStatus(status: EspStatusEnum): List<Module> {
-        return moduleRepository.findAllByStatus(status)
+    fun findAll(): List<Module> {
+        return moduleRepository.findAllByOrderByName()
     }
 
     fun createNewModule(module: Module): Module {

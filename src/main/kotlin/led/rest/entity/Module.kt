@@ -1,6 +1,5 @@
 package led.rest.entity
 
-import led.rest.enums.EspStatusEnum
 import javax.persistence.*
 
 @Entity(name = "Module")
@@ -15,8 +14,5 @@ data class Module(
         val name: String? = null,
 
         @Column(name = "ADDRESS")
-        var address: String? = null,
-
-        @Column(name = "STATUS")
-        var status: EspStatusEnum? = null
+        var address: String? = null
 )

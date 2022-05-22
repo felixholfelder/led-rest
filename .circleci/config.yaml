@@ -13,8 +13,8 @@ jobs:
     steps:
       - checkout
       - run:
-           name: Clean, Install
-           command: ./mvnw clean install
+          name: Clean, Install
+          command: ./mvnw clean install
       - run:
           name: Build Jar-File
           command: ./mvnw -Dmaven.test.skip=true package
@@ -32,9 +32,13 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: Build Docker image
+          name: Build latest docker image
           command: |
             docker build -t $IMAGE_NAME:latest .
+      - run:
+          name: Build versioned docker image
+          command: |
+            docker build -t $IMAGE_NAME-$CIRCLE_TAG:latest .
       - run:
           name: Push to Docker-Hub
           command: |
@@ -54,11 +58,12 @@ workflows:
     jobs:
       - build:
         filters:
-          branches:
-            only: master
+          tags:
+            only: /.*/
       - dockerize:
           requires:
             - build
           filters:
-            branches:
-              only: master
+            tags:
+              only: /.*/
+
