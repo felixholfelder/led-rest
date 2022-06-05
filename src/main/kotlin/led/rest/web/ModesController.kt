@@ -16,7 +16,5 @@ class ModesController(private val modeService: ModeService) {
 
     @GetMapping
     @Operation(summary = "Returns a list with all colormodes")
-    fun findAllColorModes(): MutableList<Int> {
-        return modeService.findAll()
-    }
+    fun findAllColorModes(): MutableList<Int> = modeService.findAll()
 }

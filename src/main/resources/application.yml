@@ -1,4 +1,6 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
   jpa:
     show-sql: false
     properties:
@@ -17,6 +19,3 @@ spring:
     user:
       name: ${USER_NAME}
       password: ${USER_PASSWORD}
-
-  main:
-    allow-bean-definition-overriding: true

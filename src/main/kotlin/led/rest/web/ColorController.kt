@@ -14,19 +14,13 @@ class ColorController(private val colorService: ColorService) {
 
     @GetMapping
     @Operation(summary = "Returns a list with all colors")
-    fun findAllColors(): MutableList<Color> {
-        return colorService.findAll()
-    }
+    fun findAllColors(): MutableList<Color> = colorService.findAll()
 
     @PostMapping
     @Operation(summary = "Creates a new color")
-    fun createColor(@RequestBody color: Color): Color {
-        return colorService.createColor(color)
-    }
+    fun createColor(@RequestBody color: Color): Color = colorService.createColor(color)
 
     @DeleteMapping("/{colorId}")
-    @Operation(summary = "Deletes new color")
-    fun deleteColor(@PathVariable colorId: Int) {
-        colorService.deleteColor(colorId)
-    }
+    @Operation(summary = "Deletes a color")
+    fun deleteColor(@PathVariable colorId: Int) = colorService.deleteColor(colorId)
 }
