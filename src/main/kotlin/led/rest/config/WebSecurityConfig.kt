@@ -18,7 +18,11 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
     fun configure(http: HttpSecurity?) {
         http?.csrf()?.disable()
             ?.sessionManagement()
-            ?.sessionCreationPolicy(SessionCreationPolicy.NEVER)?.and()
+            ?.sessionCreationPolicy(SessionCreationPolicy.NEVER)
+            ?.and()
+            ?.authorizeRequests()
+            ?.antMatchers("/api/modules/address")?.permitAll()
+            ?.and()
             ?.authorizeRequests()?.anyRequest()?.authenticated()
             ?.and()?.httpBasic()
     }
