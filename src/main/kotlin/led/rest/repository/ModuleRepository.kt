@@ -9,4 +9,6 @@ interface ModuleRepository: JpaRepository<Module, Int> {
     fun findAllByOrderByName(): List<Module>
 
     fun findByMac(mac: String?): Module
+
+    fun findById(id: Int?): Module
 }

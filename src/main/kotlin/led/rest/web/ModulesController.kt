@@ -24,6 +24,10 @@ class ModulesController(private val moduleService: ModuleService) {
     @Operation(summary = "Sets the IP of a module")
     fun setStatus(@RequestBody module: StatusModel) = moduleService.setStatus(module)
 
+    @PutMapping("/{moduleId}")
+    @Operation(summary = "Updates a module")
+    fun updateModule(@PathVariable moduleId: Int?, @RequestBody module: Module) = moduleService.updateModule(moduleId, module)
+
     @DeleteMapping("/{moduleId}")
     @Operation(summary = "Deletes a module")
     fun deleteModule(@PathVariable moduleId: Int) = moduleService.deleteModule(moduleId)

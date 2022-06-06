@@ -11,7 +11,7 @@ data class Module(
         var id: Int = 0,
 
         @Column(name = "NAME")
-        val name: String? = null,
+        var name: String? = null,
 
         @Column(name = "ADDRESS")
         var address: String? = null,
