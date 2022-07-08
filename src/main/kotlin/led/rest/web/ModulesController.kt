@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag
 import led.rest.entity.Module
 import led.rest.model.StatusModel
 import led.rest.service.ModuleService
+import led.rest.wrapper.ListWrapper
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*
 class ModulesController(private val moduleService: ModuleService) {
     @GetMapping
     @Operation(summary = "Returns a list with all modules")
-    fun findAll(): List<Module> = moduleService.findAll()
+    fun findAll(): ListWrapper<Module> = moduleService.findAll()
 
     @PostMapping
     @Operation(summary = "Creates a new module")

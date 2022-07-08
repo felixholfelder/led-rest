@@ -3,14 +3,15 @@ package led.rest.service
 import led.rest.entity.Module
 import led.rest.model.StatusModel
 import led.rest.repository.ModuleRepository
+import led.rest.wrapper.ListWrapper
 import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
 class ModuleService(private val moduleRepository: ModuleRepository) {
-    fun findAll(): List<Module> = moduleRepository.findAllByOrderByName()
+    fun findAll() = ListWrapper(moduleRepository.findAllByOrderByName())
 
-    fun createNewModule(module: Module): Module = moduleRepository.saveAndFlush(module)
+    fun createNewModule(module: Module) = moduleRepository.saveAndFlush(module)
 
     fun setStatus(newModule: StatusModel) {
         val module = moduleRepository.findByMac(newModule.mac?.uppercase())
