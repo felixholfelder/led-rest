@@ -19,7 +19,7 @@ class ModulesController(private val moduleService: ModuleService) {
 
     @PostMapping
     @Operation(summary = "Creates a new module")
-    fun createModule(@RequestBody module: Module): Module = moduleService.createNewModule(module)
+    fun createModule(@RequestBody module: Module) = moduleService.createNewModule(module)
 
     @PatchMapping("/address")
     @Operation(summary = "Sets the IP of a module")

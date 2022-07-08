@@ -11,7 +11,7 @@ import java.util.*
 class ModuleService(private val moduleRepository: ModuleRepository) {
     fun findAll() = ListWrapper(moduleRepository.findAllByOrderByName())
 
-    fun createNewModule(module: Module) = moduleRepository.saveAndFlush(module)
+    fun createNewModule(module: Module) = ListWrapper(listOf(moduleRepository.saveAndFlush(module)))
 
     fun setStatus(newModule: StatusModel) {
         val module = moduleRepository.findByMac(newModule.mac?.uppercase())
@@ -19,12 +19,13 @@ class ModuleService(private val moduleRepository: ModuleRepository) {
         moduleRepository.saveAndFlush(module)
     }
 
-    fun updateModule(moduleId: Int?, newModule: Module): Module {
+    fun updateModule(moduleId: Int?, newModule: Module): ListWrapper<Module> {
         val module: Module = moduleRepository.findById(moduleId)
         module.name = newModule.name
         module.address = newModule.address
         module.mac = newModule.mac
-        return moduleRepository.saveAndFlush(module)
+        moduleRepository.saveAndFlush(module)
+        return ListWrapper(listOf(module))
     }
 
     fun deleteModule(moduleId: Int) = moduleRepository.deleteById(moduleId)
