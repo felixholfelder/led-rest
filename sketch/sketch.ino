@@ -102,6 +102,7 @@ void handleMode() {
     return;
   }
   String value = server.arg("plain");
+  Serial.println(value);
   setNewMode(value);
 
   server.send(200, "text/plain", "Led Color changed");
@@ -126,6 +127,7 @@ void setNewMode(String value) {
   uint8_t greenColor = doc["green"];
   uint8_t blueColor = doc["blue"];
   strip.setMode(currentMode);
+  Serial.println(redColor);
   if(redColor != 0 || greenColor != 0 || blueColor != 0) {
     strip.setColor(redColor, greenColor, blueColor);
   }
