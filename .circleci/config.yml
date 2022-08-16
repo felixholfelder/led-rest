@@ -9,7 +9,7 @@ executors:
 jobs:
   build:
     docker:
-      - image: cimg/openjdk:17.0.2
+      - image: cimg/openjdk:17.0.3
     steps:
       - checkout
       - run:
