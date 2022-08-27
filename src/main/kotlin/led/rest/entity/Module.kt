@@ -1,21 +1,21 @@
 package led.rest.entity
 
-import javax.persistence.*
+import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.index.Indexed
+import org.springframework.data.mongodb.core.mapping.Document
 
-@Entity(name = "Module")
-@Table(name = "LEDMODULE")
+@Document
 data class Module(
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name = "LEDMODULE_ID")
+        @Indexed(name = "MODULEID")
         var id: Int = 0,
 
-        @Column(name = "NAME")
+        @Indexed
         var name: String? = null,
 
-        @Column(name = "ADDRESS")
+        @Indexed
         var address: String? = null,
 
-        @Column(name = "MAC")
+        @Indexed(unique = true)
         var mac: String? = null
 )

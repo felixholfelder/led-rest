@@ -1,14 +1,10 @@
 package led.rest.repository
 
 import led.rest.entity.Module
-import org.springframework.data.jpa.repository.JpaRepository
-import org.springframework.stereotype.Repository
+import org.springframework.data.mongodb.repository.MongoRepository
 
-@Repository
-interface ModuleRepository: JpaRepository<Module, Int> {
+interface ModuleRepository: MongoRepository<Module, Int> {
     fun findAllByOrderByName(): List<Module>
-
     fun findByMac(mac: String?): Module
-
     fun findById(id: Int?): Module
 }

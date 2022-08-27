@@ -11,12 +11,12 @@ import java.util.*
 class ModuleService(private val moduleRepository: ModuleRepository) {
     fun findAll() = ListWrapper(moduleRepository.findAllByOrderByName())
 
-    fun createNewModule(module: Module) = ListWrapper(listOf(moduleRepository.saveAndFlush(module)))
+    fun createNewModule(module: Module) = ListWrapper(listOf(moduleRepository.save(module)))
 
     fun setStatus(newModule: StatusModel) {
         val module = moduleRepository.findByMac(newModule.mac?.uppercase())
         module.address = newModule.address
-        moduleRepository.saveAndFlush(module)
+        moduleRepository.save(module)
     }
 
     fun updateModule(moduleId: Int?, newModule: Module): ListWrapper<Module> {
@@ -24,7 +24,7 @@ class ModuleService(private val moduleRepository: ModuleRepository) {
         module.name = newModule.name
         module.address = newModule.address
         module.mac = newModule.mac
-        moduleRepository.saveAndFlush(module)
+        moduleRepository.save(module)
         return ListWrapper(listOf(module))
     }
 

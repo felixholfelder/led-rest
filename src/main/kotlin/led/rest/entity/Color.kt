@@ -1,15 +1,15 @@
 package led.rest.entity
 
-import javax.persistence.*
+import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.index.Indexed
+import org.springframework.data.mongodb.core.mapping.Document
 
-@Entity(name = "Color")
-@Table(name = "COLOR")
+@Document
 data class Color (
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name = "COLORID")
+        @Indexed(name = "COLORID")
         var id: Int = 0,
 
-        @Column(name = "HEX")
+        @Indexed
         val hex: String? = null
 )

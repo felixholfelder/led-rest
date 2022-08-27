@@ -1,8 +1,6 @@
 package led.rest.repository
 
 import led.rest.entity.Color
-import org.springframework.data.jpa.repository.JpaRepository
-import org.springframework.stereotype.Repository
+import org.springframework.data.mongodb.repository.MongoRepository
 
-@Repository
-interface ColorRepository : JpaRepository<Color, Int>
+interface ColorRepository : MongoRepository<Color, Int>
