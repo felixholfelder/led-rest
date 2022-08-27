@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.core.mapping.Document
 @Document
 data class Module(
         @Id
-        @Indexed(name = "MODULEID")
         var id: Int = 0,
 
         @Indexed
