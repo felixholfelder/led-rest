@@ -14,7 +14,7 @@ class ModuleService(private val moduleRepository: ModuleRepository) {
     fun createNewModule(module: Module) = ListWrapper(listOf(moduleRepository.save(module)))
 
     fun setStatus(newModule: StatusModel) {
-        val module = moduleRepository.findByMac(newModule.mac?.uppercase())
+        val module = moduleRepository.findByMac(newModule.mac.uppercase())
         module.address = newModule.address
         moduleRepository.save(module)
     }
