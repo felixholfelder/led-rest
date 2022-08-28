@@ -18,7 +18,7 @@ class ModuleService(private val moduleRepository: ModuleRepository) {
         moduleRepository.save(module)
     }
 
-    fun updateModule(moduleId: Int?, newModule: Module): ListWrapper<Module> {
+    fun updateModule(moduleId: String?, newModule: Module): ListWrapper<Module> {
         val module: Module = moduleRepository.findById(moduleId)
         module.name = newModule.name
         module.address = newModule.address
@@ -27,5 +27,5 @@ class ModuleService(private val moduleRepository: ModuleRepository) {
         return ListWrapper(listOf(module))
     }
 
-    fun deleteModule(moduleId: Int) = moduleRepository.deleteById(moduleId)
+    fun deleteModule(moduleId: String) = moduleRepository.deleteById(moduleId)
 }

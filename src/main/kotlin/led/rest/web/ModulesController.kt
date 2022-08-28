@@ -27,9 +27,10 @@ class ModulesController(private val moduleService: ModuleService) {
 
     @PutMapping("/{moduleId}")
     @Operation(summary = "Updates a module")
-    fun updateModule(@PathVariable moduleId: Int?, @RequestBody module: Module) = moduleService.updateModule(moduleId, module)
+    fun updateModule(@PathVariable moduleId: String?, @RequestBody module: Module) =
+        moduleService.updateModule(moduleId, module)
 
     @DeleteMapping("/{moduleId}")
     @Operation(summary = "Deletes a module")
-    fun deleteModule(@PathVariable moduleId: Int) = moduleService.deleteModule(moduleId)
+    fun deleteModule(@PathVariable moduleId: String) = moduleService.deleteModule(moduleId)
 }
