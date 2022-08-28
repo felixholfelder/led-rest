@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document
 @Document(collection = "module")
 data class Module(
         @Id
-        var id: String,
+        var id: String?,
 
         @Indexed
         var name: String,
