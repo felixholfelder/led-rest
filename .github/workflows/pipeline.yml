@@ -60,4 +60,6 @@ jobs:
       - name: Use context
         run: kubectl config use-context default
       - name: Deploy app
-        run: kubectl apply -f deploy/
+        run: |
+          export REVISION=${{ env.VERSION }}
+          kubectl apply -f deploy/
