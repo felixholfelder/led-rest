@@ -39,15 +39,12 @@ jobs:
         with:
           name: led-rest-artifact
           path: target
-      - name: Build versioned Docker image
+      - name: Build Docker image
         run: docker build --build-arg revision=${{ env.VERSION }} . -t ${{ env.IMAGE_NAME }}:${{ env.VERSION }}
-      - name: Build latest Docker image
-        run: docker build --build-arg revision=${{ env.VERSION }} . -t ${{ env.IMAGE_NAME }}
       - name: Push to Dockerhub
         run: |
           docker login -u=${{ secrets.DOCKERHUB_USER }} -p=${{ secrets.DOCKERHUB_PASS }}
           docker push ${{ env.IMAGE_NAME }}:${{ env.VERSION }}
-          docker push ${{ env.IMAGE_NAME }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -63,6 +60,4 @@ jobs:
       - name: Use context
         run: kubectl config use-context default
       - name: Deploy app
-        run: |
-          export REVISION=${{ env.VERSION }}
-          kubectl set image deployments/led-rest-deployment ${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+        run: kubectl set image deployments/led-rest-deployment led-rest-deployment=${{ env.IMAGE_NAME }}:${{ env.VERSION }}
