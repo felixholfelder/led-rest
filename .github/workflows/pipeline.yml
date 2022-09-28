@@ -13,15 +13,16 @@ jobs:
   versioning:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
       - name: Set version
+        if: ${{ github.ref != 'ref/heads/main' }}
         run: |
-          if ${steps.vars.outputs.tag} == '' then
-            echo "VERSION=${steps.vars.outputs.tag}" >> $GITHUB_ENV
-          else
-            echo "VERSION=dev" >> $GITHUB_ENV
-          fi
+          echo "${{ github.ref }}"
+          echo "VERSION=${{ github.ref }}" >> $GITHUB_ENV
+      - name: Set version
+        if: ${{ github.ref == 'ref/heads/main' }}
+        run: |
+          echo "${{ github.ref }}"
+          echo "VERSION=${{ github.ref }}" >> $GITHUB_ENV
 
   build:
     runs-on: ubuntu-latest
