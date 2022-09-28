@@ -17,12 +17,12 @@ jobs:
         if: ${{ github.ref != 'ref/heads/main' }}
         run: |
           echo "${{ github.ref }}"
-          echo "VERSION=${{ github.ref }}" >> $GITHUB_ENV
+          echo "$VERSION=${{ github.ref }}" >> $GITHUB_ENV
       - name: Set version
         if: ${{ github.ref == 'ref/heads/main' }}
         run: |
           echo "${{ github.ref }}"
-          echo "VERSION=${{ github.ref }}" >> $GITHUB_ENV
+          echo "$VERSION=${{ github.ref }}" >> $GITHUB_ENV
 
   build:
     runs-on: ubuntu-latest
