@@ -25,6 +25,6 @@ spec:
         envFrom:
         - secretRef:
             name: led-rest-secret
-        image: felixholfelder/led-rest:$revision
+        image: felixholfelder/led-rest:${revision}
         ports:
         - containerPort: 8080

@@ -62,4 +62,4 @@ jobs:
       - name: Deploy app
         run: |
           export REVISION=${{ env.VERSION }}
-          envsubst < deploy | kubectl apply -f -
+          envsubst < deploy/led-rest-deployment.yaml | kubectl apply -f -
