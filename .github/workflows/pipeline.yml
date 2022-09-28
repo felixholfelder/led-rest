@@ -17,7 +17,7 @@ jobs:
       - name: Set version
         run: |
           echo ${{env.VERSION}}
-          echo ${{ github.GITHUB_REF_NAME }}
+          echo ${{ github.ref_name }}
           echo "${{ github.ref }}"
           echo "$VERSION=${{ github.GITHUB_REF_NAME }}" >> $GITHUB_ENV
       - name: Set version
