@@ -1,0 +1,63 @@
+name: Led-Rest Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  IMAGE_NAME: felixholfelder/led-rest
+  VERSION: 0.0.1
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Clean, Install
+        run: ./mvnw -Dmaven.test.skip=true clean install
+
+      - name: Build Jar-File
+        run: ./mvnw -Dmaven.test.skip=true -Drevision=${{ env.VERSION }} package
+
+      - name: Store artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: led-rest-artifact
+          path: target
+
+  dockerize:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Checkout artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: led-rest-artifact
+          path: target
+      - name: Build Docker image
+        run: docker build --build-arg revision=${{ env.VERSION }} . -t ${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+      - name: Push to Dockerhub
+        run: |
+          docker login -u=${{ secrets.DOCKERHUB_USER }} -p=${{ secrets.DOCKERHUB_PASS }}
+          docker push ${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: dockerize
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Create config
+        run: |
+          mkdir ${HOME}/.kube
+          echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ${HOME}/.kube/config
+          cat ${HOME}/.kube/config
+      - name: Use context
+        run: kubectl config use-context default
+      - name: Deploy app
+        run: kubectl apply -f deploy/
