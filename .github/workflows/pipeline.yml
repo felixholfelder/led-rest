@@ -60,4 +60,4 @@ jobs:
       - name: Use context
         run: kubectl config use-context default
       - name: Deploy app
-        run: kubectl set image deployments/led-rest-deployment led-rest-deployment=${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+        run: kubectl set image deployments/led-rest-deployment led-rest-deployment=${{ env.IMAGE_NAME }}:${{ env.VERSION }} -n led
