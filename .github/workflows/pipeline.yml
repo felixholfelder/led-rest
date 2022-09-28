@@ -15,12 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set version for branch
-        if: ${{github.ref_name}} != null
-        run: ${{ env.VERSION }} = ${{github.ref_name}}
+        if: ${{ github.ref_name }} != null
+        run: echo "VERSION=${{ github.ref_name }}"
 
       - name: Set version for release
         if: ${{ steps.vars.outputs.tag }} != null
-        run: ${{ env.VERSION }} = ${{ steps.vars.outputs.tag }}
+        run: echo "VERSION=${{ steps.vars.outputs.tag }}"
   build:
     runs-on: ubuntu-latest
     steps:
