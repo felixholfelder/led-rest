@@ -15,7 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set version
-        if: ${{ github.GITHUB_REF_TYPE == 'branch' }}
         run: |
           echo ${{env.VERSION}}
           echo "${{ github.ref }}"
