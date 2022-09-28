@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: led-rest-deployment
+  namespace: led
+  labels:
+    app: led-rest-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: led-rest-deployment
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: led-rest-deployment
+    spec:
+      containers:
+      - name: led-rest
+        envFrom:
+        - secretRef:
+            name: led-rest-secret
+        image: felixholfelder/led-rest:latest
+        ports:
+        - containerPort: 8080
