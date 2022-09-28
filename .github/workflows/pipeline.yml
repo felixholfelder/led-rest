@@ -8,21 +8,23 @@ on:
 
 env:
   IMAGE_NAME: felixholfelder/led-rest
+  VERSION: ${{ github.GITHUB_REF_NAME }}
 
 jobs:
   versioning:
     runs-on: ubuntu-latest
     steps:
       - name: Set version
-        if: ${{ github.ref != 'ref/heads/main' }}
+        if: ${{ github.GITHUB_REF_TYPE == 'branch' }}
         run: |
+          echo ${{env.VERSION}}
           echo "${{ github.ref }}"
-          echo "$VERSION=${{ github.ref }}" >> $GITHUB_ENV
+          echo "$VERSION=${{ github.GITHUB_REF_NAME }}" >> $GITHUB_ENV
       - name: Set version
         if: ${{ github.ref == 'ref/heads/main' }}
         run: |
           echo "${{ github.ref }}"
-          echo "$VERSION=${{ github.ref }}" >> $GITHUB_ENV
+          echo "$VERSION=${{ github.GITHUB_REF_NAME }}" >> $GITHUB_ENV
 
   build:
     runs-on: ubuntu-latest
