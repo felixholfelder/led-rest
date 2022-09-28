@@ -39,12 +39,15 @@ jobs:
         with:
           name: led-rest-artifact
           path: target
-      - name: Build Docker image
+      - name: Build versioned Docker image
         run: docker build --build-arg revision=${{ env.VERSION }} . -t ${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+      - name: Build latest Docker image
+        run: docker build --build-arg revision=${{ env.VERSION }} . -t ${{ env.IMAGE_NAME }}
       - name: Push to Dockerhub
         run: |
           docker login -u=${{ secrets.DOCKERHUB_USER }} -p=${{ secrets.DOCKERHUB_PASS }}
           docker push ${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+          docker push ${{ env.IMAGE_NAME }}
 
   deploy:
     runs-on: ubuntu-latest
