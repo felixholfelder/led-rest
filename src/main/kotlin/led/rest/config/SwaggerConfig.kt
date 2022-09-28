@@ -15,6 +15,6 @@ class SwaggerConfig {
                 .components(Components())
                 .info(Info()
                         .title("Led-Rest")
-                        .description("Swagger-Doc for Led-Rest"))
+                        .description("Swagger-Doc for Led-Rest test"))
     }
 }
