@@ -62,4 +62,4 @@ jobs:
       - name: Deploy app
         run: |
           export REVISION=${{ env.VERSION }}
-          kubectl apply -f deploy/
+          envsubst < deploy | kubectl apply -f -
