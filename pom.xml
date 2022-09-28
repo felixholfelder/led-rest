@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>led.rest</groupId>
 	<artifactId>led-rest</artifactId>
-	<version>${CIRCLE_TAG}</version>
+	<version>${revision}</version>
 	<name>led-rest</name>
 	<description>Rest Service for Led-App</description>
 	<properties>
