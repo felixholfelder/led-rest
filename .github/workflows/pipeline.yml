@@ -2,9 +2,15 @@ name: Led-Rest Pipeline
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - '*'
+    tags:
+      - '*'
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - '*'
+    tags:
+      - '*'
 
 env:
   IMAGE_NAME: felixholfelder/led-rest
@@ -14,9 +20,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: TEST
-        run: |
-          echo ${{env.VERSION}}
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Clean, Install
