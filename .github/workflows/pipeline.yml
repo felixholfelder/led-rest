@@ -13,6 +13,8 @@ jobs:
   versioning:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
       - name: Set version
         run: |
           if ${steps.vars.outputs.tag} == '' then
