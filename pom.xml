@@ -16,7 +16,7 @@
 	<properties>
 		<java.version>17</java.version>
 		<kotlin.version>1.7.20</kotlin.version>
-		<swagger.version>1.6.11</swagger.version>
+		<swagger.version>1.6.12</swagger.version>
 	</properties>
 	<dependencies>
 		<dependency>
