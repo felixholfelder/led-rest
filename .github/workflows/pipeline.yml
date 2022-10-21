@@ -18,6 +18,7 @@ env:
 
 jobs:
   qualitygate:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkstyle
         run: ./mvnw checkstyle:check
