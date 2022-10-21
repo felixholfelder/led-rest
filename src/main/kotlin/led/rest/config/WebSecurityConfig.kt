@@ -1,29 +1,24 @@
 package led.rest.config
 
+import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.http.HttpMethod
+import org.springframework.security.config.Customizer.withDefaults
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.builders.WebSecurity
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
-import org.springframework.security.config.http.SessionCreationPolicy
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer
+import org.springframework.security.web.SecurityFilterChain
 
 @Configuration
-class WebSecurityConfig : WebSecurityConfigurerAdapter() {
-    override
-    fun configure(web: WebSecurity?) {
-        web?.ignoring()?.antMatchers(HttpMethod.OPTIONS, "/**")
+class WebSecurityConfig {
+    @Bean
+    fun webSecurityCustomizer(): WebSecurityCustomizer? {
+        return WebSecurityCustomizer { web: WebSecurity -> web.ignoring().antMatchers("/api/modules/address") }
     }
 
-    override
-    fun configure(http: HttpSecurity?) {
-        http?.csrf()?.disable()
-            ?.sessionManagement()
-            ?.sessionCreationPolicy(SessionCreationPolicy.NEVER)
-            ?.and()
-            ?.authorizeRequests()
-            ?.antMatchers("/api/modules/address")?.permitAll()
-            ?.and()
-            ?.authorizeRequests()?.anyRequest()?.authenticated()
-            ?.and()?.httpBasic()
+    @Bean
+    @Throws(Exception::class)
+    fun filterChain(http: HttpSecurity): SecurityFilterChain? {
+        http.authorizeHttpRequests { auth -> auth.anyRequest().authenticated() }.httpBasic(withDefaults())
+        return http.build()
     }
 }
