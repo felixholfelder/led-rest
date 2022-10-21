@@ -12,7 +12,8 @@ import org.springframework.security.web.SecurityFilterChain
 class WebSecurityConfig {
     @Bean
     fun webSecurityCustomizer(): WebSecurityCustomizer? {
-        return WebSecurityCustomizer { web: WebSecurity -> web.ignoring().antMatchers("/api/modules/address") }
+        return WebSecurityCustomizer { web: WebSecurity -> web.ignoring()
+            .antMatchers("/api/modules/address", "/swagger-ui.html", "/swagger/index.html") }
     }
 
     @Bean
