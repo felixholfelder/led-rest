@@ -13,7 +13,7 @@ class WebSecurityConfig {
     @Bean
     fun webSecurityCustomizer(): WebSecurityCustomizer? {
         return WebSecurityCustomizer { web: WebSecurity -> web.ignoring()
-            .antMatchers("/api/modules/address", "/swagger-ui.html", "/swagger/index.html") }
+            .antMatchers("/api/modules/address", "/swagger-ui.html", "/swagger-ui/index.html") }
     }
 
     @Bean
