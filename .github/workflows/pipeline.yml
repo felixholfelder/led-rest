@@ -1,4 +1,4 @@
-name: Led-Rest Pipelinequalitygate
+name: Led-Rest Pipeline
 
 on:
   push:
