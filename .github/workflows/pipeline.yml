@@ -26,8 +26,6 @@ jobs:
         run: ./mvnw checkstyle:check
       - name: PMD
         run: ./mvnw pmd:check
-      - name: Spotbugs
-        run: ./mvnw spotbugs:check
   build:
     runs-on: ubuntu-latest
     needs: qualitygate
