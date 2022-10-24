@@ -4,22 +4,17 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.Customizer.withDefaults
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
-import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer
 import org.springframework.security.web.SecurityFilterChain
 
 @Configuration
 class WebSecurityConfig {
     @Bean
-    fun webSecurityCustomizer(): WebSecurityCustomizer? {
-        return WebSecurityCustomizer { web: WebSecurity -> web.ignoring()
-            .antMatchers("/api/modules/address", "/swagger-ui.html", "/swagger-ui/index.html") }
-    }
+    fun webSecurityCustomizer() =
+        WebSecurityCustomizer { web -> web.ignoring().antMatchers("/api/modules/address", "/actuator**") }
 
     @Bean
     @Throws(Exception::class)
-    fun filterChain(http: HttpSecurity): SecurityFilterChain? {
-        http.authorizeHttpRequests { auth -> auth.anyRequest().authenticated() }.httpBasic(withDefaults())
-        return http.build()
-    }
+    fun filterChain(http: HttpSecurity): SecurityFilterChain =
+        http.authorizeHttpRequests { auth -> auth.anyRequest().authenticated() }.httpBasic(withDefaults()).build()
 }
