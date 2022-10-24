@@ -6,15 +6,15 @@ import org.springframework.data.mongodb.core.mapping.Document
 
 @Document(collection = "module")
 data class Module(
-        @Id
-        var id: String?,
+  @Id
+  var id: String?,
 
-        @Indexed
-        var name: String,
+  @Indexed
+  var name: String,
 
-        @Indexed
-        var address: String,
+  @Indexed
+  var address: String,
 
-        @Indexed(unique = true)
-        var mac: String?
+  @Indexed(unique = true)
+  var mac: String?
 )

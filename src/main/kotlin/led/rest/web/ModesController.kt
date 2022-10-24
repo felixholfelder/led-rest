@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController
 @CrossOrigin("*")
 @Tag(name = "Modes Controller")
 class ModesController(private val modeService: ModeService) {
-    @GetMapping
-    @Operation(summary = "Returns a list with all colormodes")
-    fun findAllColorModes(): ListWrapper<ModeModel> = modeService.findAll()
+  @GetMapping
+  @Operation(summary = "Returns a list with all colormodes")
+  fun findAllColorModes(): ListWrapper<ModeModel> = modeService.findAll()
 }

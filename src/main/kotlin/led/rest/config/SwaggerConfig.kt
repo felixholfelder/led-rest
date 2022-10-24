@@ -9,12 +9,14 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class SwaggerConfig {
 
-    @Bean
-    fun openApi(): OpenAPI {
-        return OpenAPI()
-                .components(Components())
-                .info(Info()
-                        .title("Led-Rest")
-                        .description("Swagger-Doc for Led-Rest test"))
-    }
+  @Bean
+  fun openApi(): OpenAPI {
+    return OpenAPI()
+      .components(Components())
+      .info(
+        Info()
+          .title("Led-Rest")
+          .description("Swagger-Doc for Led-Rest test")
+      )
+  }
 }

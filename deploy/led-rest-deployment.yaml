@@ -21,10 +21,10 @@ spec:
         app: led-rest-deployment
     spec:
       containers:
-      - name: led-rest
-        envFrom:
-        - secretRef:
-            name: led-rest-secret
-        image: felixholfelder/led-rest
-        ports:
-        - containerPort: 8080
+        - name: led-rest
+          envFrom:
+            - secretRef:
+                name: led-rest-secret
+          image: felixholfelder/led-rest
+          ports:
+            - containerPort: 8080
