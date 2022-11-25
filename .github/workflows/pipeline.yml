@@ -93,7 +93,7 @@ jobs:
   clean-up:
     runs-on: ubuntu-latest
     if: always()
-    needs: [deploy]
+    needs: deploy
     steps:
       - name: Delete artifacts
         uses: geekyeggo/delete-artifact@v2
