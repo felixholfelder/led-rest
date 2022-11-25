@@ -96,6 +96,7 @@ jobs:
     needs: deploy
     steps:
       - name: Delete artifacts
-        uses: geekyeggo/delete-artifact@v2
+        uses: kolpav/purge-artifacts-action@v1
         with:
-          name: led-rest-artifact
+          token: ${{ secrets.GITHUB_TOKEN }}
+          expire-in: 0
