@@ -32,6 +32,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'microsoft' # See 'Supported distributions' for available options
+          java-version: '17'
+
       - name: Clean, Install
         run: ./mvnw -Dmaven.test.skip=true clean install
 
