@@ -22,8 +22,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
       - name: Checkstyle
         run: ./mvnw checkstyle:check
+
       - name: PMD
         run: ./mvnw pmd:check
   build:
@@ -58,17 +60,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
       - name: Checkout artifacts
         uses: actions/download-artifact@v3
         with:
           name: led-rest-artifact
           path: target
+
       - name: Build Docker image
         run: docker build --build-arg revision=${{ env.VERSION }} . -t ${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+
       - name: Push to Dockerhub
         run: |
           docker login -u=${{ secrets.DOCKERHUB_USER }} -p=${{ secrets.DOCKERHUB_PASS }}
           docker push ${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+
       - name: Store artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -82,15 +88,25 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Checkout artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: led-rest-artifact
+          path: target
+
       - name: Create config
         run: |
           mkdir ${HOME}/.kube
           echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ${HOME}/.kube/config
           cat ${HOME}/.kube/config
+
       - name: Use context
         run: kubectl config use-context default
+
       - name: Deploy app
         run: kubectl set image deployments/led-rest-deployment led-rest=${{ env.IMAGE_NAME }}:${{ env.VERSION }} -n led
+
       - name: Store artifacts
         uses: actions/upload-artifact@v3
         with:
