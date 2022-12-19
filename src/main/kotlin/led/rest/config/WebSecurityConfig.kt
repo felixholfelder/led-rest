@@ -11,7 +11,7 @@ import org.springframework.security.web.SecurityFilterChain
 class WebSecurityConfig {
   @Bean
   fun webSecurityCustomizer() =
-    WebSecurityCustomizer { web -> web.ignoring().antMatchers("/api/modules/address", "/actuator**") }
+    WebSecurityCustomizer { web -> web.ignoring().requestMatchers("/api/modules/address", "/actuator**") }
 
   @Bean
   @Throws(Exception::class)
