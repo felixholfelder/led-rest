@@ -31,14 +31,5 @@ class ModuleService(private val moduleRepository: ModuleRepository) {
     log.info("Module ${module.name} registered!")
   }
 
-  fun updateModule(moduleId: String?, newModule: Module): Module {
-    val module: Module = moduleRepository.findById(moduleId)
-    module.name = newModule.name
-    module.address = newModule.address
-    module.mac = newModule.mac
-    moduleRepository.save(module)
-    return module
-  }
-
   fun deleteModule(moduleId: String) = moduleRepository.deleteById(moduleId)
 }
