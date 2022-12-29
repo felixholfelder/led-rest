@@ -5,6 +5,6 @@ import org.springframework.data.mongodb.repository.MongoRepository
 
 interface ModuleRepository : MongoRepository<Module, String> {
   fun findAllByOrderByName(): List<Module>
-  fun findByMac(mac: String?): Module
+  fun findByMac(mac: String?): Module?
   fun findById(id: String?): Module
 }

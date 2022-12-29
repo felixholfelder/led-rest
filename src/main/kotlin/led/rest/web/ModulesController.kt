@@ -17,13 +17,9 @@ class ModulesController(private val moduleService: ModuleService) {
   @Operation(summary = "Returns a list with all modules")
   fun findAll(): ListWrapper<Module> = moduleService.findAll()
 
-  @PostMapping
-  @Operation(summary = "Creates a new module")
-  fun createModule(@RequestBody module: Module) = moduleService.createNewModule(module)
-
   @PatchMapping("/address")
   @Operation(summary = "Sets the IP of a module")
-  fun setStatus(@RequestBody module: StatusModel) = moduleService.setStatus(module)
+  fun setAddress(@RequestBody module: StatusModel) = moduleService.setAddress(module)
 
   @PutMapping("/{moduleId}")
   @Operation(summary = "Updates a module")
