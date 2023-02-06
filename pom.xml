@@ -15,7 +15,7 @@
     <description>Rest Service for Led-App</description>
     <properties>
         <java.version>17</java.version>
-        <kotlin.version>1.8.0</kotlin.version>
+        <kotlin.version>1.8.10</kotlin.version>
         <swagger.version>1.6.14</swagger.version>
         <checkstyle.version>3.2.1</checkstyle.version>
         <pmd.version>3.20.0</pmd.version>
