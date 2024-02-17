@@ -48,7 +48,7 @@ jobs:
         run: ./mvnw -Dmaven.test.skip=true -Drevision=${{ env.VERSION }} package
 
       - name: Store artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: led-rest-artifact
           path: target
@@ -62,7 +62,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Checkout artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: led-rest-artifact
           path: target
@@ -76,7 +76,7 @@ jobs:
           docker push ${{ env.IMAGE_NAME }}:${{ env.VERSION }}
 
       - name: Store artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: led-rest-artifact
           path: target
@@ -90,7 +90,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Checkout artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: led-rest-artifact
           path: target
@@ -108,7 +108,7 @@ jobs:
         run: kubectl set image deployments/led-rest-deployment led-rest=${{ env.IMAGE_NAME }}:${{ env.VERSION }} -n led
 
       - name: Store artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: led-rest-artifact
           path: target
